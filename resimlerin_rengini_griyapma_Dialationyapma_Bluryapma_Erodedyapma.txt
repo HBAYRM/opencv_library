@@ -1,0 +1,19 @@
+img=cv2.imread("Recourses/lena.png")
+#Alttaki fonksiyon(cvtColor) resimlerin rengini değiştirir aşagıdaki örnekte gri yaptı resmi
+imgGray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+#Alttakinde ise resimi daha bulanık yapıyoruz (imgGray-->verilen resim, (9,9)---->bulanıklık derecesi (3,3 5,5 7,7 9,9) verebilirsin, sondaki 0 ise gerekli oraya konulur.)
+imgBlur=cv2.GaussianBlur(imgGray,(9,9),0)
+#Resimdeki kenarları bulan fonksiyon
+imgCanny=cv2.Canny(img,100,100)
+#Resimdeki kenarları kalınlaştırmak için şunlar yapılır
+kernel=np.ones((5,5),np.uint8)#Burada 5*5 lik 1 lerden olusan bir matris yaptık uin8 değerin türünü belirtir yani 8 bitlik int değerlerdir.
+imgDialation=cv2.dilate(imgCanny,kernel,iterations=1)#iterations 1 den buyuk yaparsak kalınlık artar
+#Dialation resimi daha ince ayrıntıya çevirir
+imgEroded=cv2.erode(imgDialation,kernel,iterations=1)
+
+cv2.imshow("Image Gray",imgGray)
+cv2.imshow("Image Blur",imgBlur)
+cv2.imshow("Image Canny",imgCanny)
+cv2.imshow("Image Dialation",imgDialation)
+cv2.imshow("Image Eroded",imgEroded)
+cv2.waitKey(0)

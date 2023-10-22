@@ -1,0 +1,10 @@
+# BOYUTLANDIRMA VE KIRPMA İŞLEMLERİ
+img=cv2.imread("Recourses/lambo.png")
+print(img.shape)
+imgResize=cv2.resize(img,(300,200))
+cv2.imshow("Lambo",img)
+cv2.imshow("resize lambo",imgResize)
+#Burada ise resimi kırpma işlemi yaptık bildiğimiz matrislerde istediğimiz değere kadar alıp yazdırıyoruz
+imgCropped=imgResize[0:150,0:100]
+cv2.imshow("cropped",imgCropped)
+cv2.waitKey(0)
